@@ -4,6 +4,14 @@ This is a demo how to make `"resolutions"` work when using `pnpm`.
 
 ## Install
 
+Fetch versions first:
+
+``sh
+node ./fetch-versions.js
+```
+
+Then install as usual:
+
 ```sh
 pnpm i --shamefully-hoist=true
 ```

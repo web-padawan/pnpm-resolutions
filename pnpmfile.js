@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
-const versions = JSON.parse(fs.readFileSync('./index.json', 'utf-8')).versions;
+const versions = JSON.parse(fs.readFileSync('./versions.json', 'utf-8')).versions;
 
 let vaadinDeps;
 
@@ -17,7 +17,7 @@ function getExactVersion(string) {
 }
 
 function getVaadinDeps() {
-  if (vaadinDeps) {
+  if (vaadinDeps) {
     return vaadinDeps;
   }
   // index.json file contains info about all the versions
