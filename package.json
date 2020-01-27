@@ -1,0 +1,17 @@
+{
+  "name": "pnpm-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vaadin/vaadin-button": "^2.2.2",
+    "@vaadin/vaadin-shrinkwrap": "^15.0.0-alpha13"
+  },
+  "resolutions": {
+    "@vaadin/vaadin-element-mixin": "2.2.0",
+    "@vaadin/vaadin-overlay": "3.2.18"
+  }
+}
