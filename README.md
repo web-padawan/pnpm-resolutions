@@ -10,19 +10,13 @@ pnpm i --shamefully-hoist=true
 
 ## Usage
 
-When generating `package.json` in Flow, we need to do the following:
+The `pnpmfile.js` in this repository does the following:
 
-1. Get the dependencies from `@vaadin/vaadin-shrinkwrap/package.json`
+1. Get the dependencies from `@vaadin/vaadin-shrinkwrap/package.json`:
 
-2. List every dependency in the `"resolutions"` like this:
+  - look up for `.pnpm-store` assuming it is on the same drive home directory
+  - check for `index.json` for `@vaadin/vaadin-shrinkwrap` package in the store
+  - get the shrinkwrap package version from the root `package.json` dependencies
+  - check `versions` in `index.json` above and get the shrinkwrap that we need
 
-```j
-  "resolutions": {
-    "@vaadin/vaadin-element-mixin": "2.2.0",
-    "@vaadin/vaadin-overlay": "3.2.18"
-  }
-```
-
-3. Place `pnpmfile.js` to the folder where `package.json` is located
-
-This way we can pin transitive dependencies like `vaadin-overlay`.
+2. For every dependency, pin versions to the one from shrinkwrap.
