@@ -9,5 +9,8 @@
   "dependencies": {
     "@vaadin/vaadin-button": "^2.2.2",
     "@vaadin/vaadin-shrinkwrap": "15.0.0-alpha13"
+  },
+  "scripts": {
+    "preinstall": "node ./fetch-versions.js"
   }
 }

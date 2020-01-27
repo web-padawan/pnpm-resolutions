@@ -1,21 +1,8 @@
-// Put this file into your projects root.
-// This will enable using "resolutions"
+// Put this file into your projects root, together with "fetch-versions.js"
 const fs = require('fs');
-const path = require('path');
-const os = require('os');
 
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
-
-// These are defaults with 4.x
-const STORE_DIR = '.pnpm-store';
-const STORE_VERSION = '2';
-
-const storePath = path.join(
-  getHomedir(),
-  STORE_DIR,
-  STORE_VERSION,
-  'registry.npmjs.org'
-);
+const versions = JSON.parse(fs.readFileSync('./index.json', 'utf-8')).versions;
 
 let vaadinDeps;
 
@@ -25,52 +12,45 @@ module.exports = {
   }
 };
 
-function getHomedir() {
-  const home = os.homedir();
-  if (!home) {
-    throw new Error('Could not find the homedir');
-  }
-  return home;
-}
-
 function getExactVersion(string) {
   return string.replace('^', '');
 }
 
-function getVaadinPath() {
-  return path.join(storePath, '@vaadin', 'vaadin-shrinkwrap', 'index.json');
-}
-
 function getVaadinDeps() {
-  const path = getVaadinPath();
-  const json = JSON.parse(fs.readFileSync(path, 'utf-8'));
-  // index.json file in the store contains versions info
+  if (vaadinDeps) {
+    return vaadinDeps;
+  }
+  // index.json file contains info about all the versions
   const version = getExactVersion(
     packageJson.dependencies['@vaadin/vaadin-shrinkwrap']
   );
-  const data = json.versions[version];
+
+  const data = versions[version];
   const deps = data.dependencies;
-  const result = {};
+
+  vaadinDeps = {};
   Object.keys(deps).forEach(key => {
     // Do not pin vaadin-core-shrinkwrap
     if (key.indexOf('shrinkwrap') === -1) {
-      result[key] = getExactVersion(deps[key]);
+      vaadinDeps[key] = getExactVersion(deps[key]);
     }
   });
-  return result;
+
+  return vaadinDeps;
 }
 
 function readPackage(pkg) {
-  vaadinDeps = vaadinDeps || getVaadinDeps();
+  const deps = getVaadinDeps();
+
   const { dependencies } = pkg;
 
   if (dependencies) {
-    for (let k in vaadinDeps) {
-      if (dependencies[k] && dependencies[k] !== vaadinDeps[k]) {
+    for (let k in deps) {
+      if (dependencies[k] && dependencies[k] !== deps[k]) {
         console.log(
-          `Pinned ${k} required by ${pkg.name} from ${dependencies[k]} to ${vaadinDeps[k]}`
+          `Pinned ${k} required by ${pkg.name} from ${dependencies[k]} to ${deps[k]}`
         );
-        pkg.dependencies[k] = vaadinDeps[k];
+        pkg.dependencies[k] = deps[k];
       }
     }
   }
