@@ -1,6 +1,6 @@
 ## pnpm and resolutions
 
-This is a demo how to make `"resolutions"` work when using `pnpm`.
+This is a demo how to pin dependency versions when using `pnpm`.
 
 ## Install
 
