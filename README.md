@@ -6,7 +6,7 @@ This is a demo how to make `"resolutions"` work when using `pnpm`.
 
 Fetch versions first:
 
-``sh
+```sh
 node ./fetch-versions.js
 ```
 
@@ -20,7 +20,7 @@ pnpm i --shamefully-hoist=true
 
 The files in this repository do the following:
 
-1. `fetch-versions.js` executed via `preinstall` npm script
+1. `fetch-versions.js` (must be executed before `pnpm install`)
 
   - fetch data from `https://registry.npmjs.org/@vaadin/vaadin-shrinkwrap`
   - save data including versions information to `index.json` file
