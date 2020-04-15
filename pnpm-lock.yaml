@@ -1,5 +1,5 @@
 dependencies:
-  '@vaadin/vaadin-element-mixin': 2.3.2
+  '@vaadin/vaadin-element-mixin': 2.2.0
   '@vaadin/vaadin-shrinkwrap': 15.0.4
 lockfileVersion: 5.1
 packages:
@@ -304,14 +304,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-8IwH1iSlv3G+1ak08RFg/8smh5zfIANpPZJLLzixW7iBDJaIlWPMzplxnDz5o7GcoYrmpo26e2deKeu4rpEMwg==
-  /@vaadin/vaadin-element-mixin/2.3.2:
-    dependencies:
-      '@polymer/polymer': 3.3.1
-      '@vaadin/vaadin-development-mode-detector': 2.0.4
-      '@vaadin/vaadin-usage-statistics': 2.1.0
-    dev: false
-    resolution:
-      integrity: sha512-pYcVjkeqzNrzTTydkkYaSt7sNOpiReCx3wZYysQlVXt5+i/zR4ATttdTzRc0VJkycYG+y+UoIgGZE4o283of2w==
   /@vaadin/vaadin-form-layout/2.1.7:
     dependencies:
       '@polymer/iron-resizable-behavior': 3.0.1
@@ -683,5 +675,5 @@ packages:
     resolution:
       integrity: sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==
 specifiers:
-  '@vaadin/vaadin-element-mixin': 2.3.2
+  '@vaadin/vaadin-element-mixin': 2.2.0
   '@vaadin/vaadin-shrinkwrap': 15.0.4
